@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./app.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack-subset.css">
+    <link rel="stylesheet" type="text/css" href="/style/style.css" />
+    <title>Adyen V4 Encryption</title>
+  </head>
+  <body>
+    <h1>Adyen V4 Encryption</h1>
+    <form action="v4/enc" method="post">
+      <label for="referrer">Enter link</label>
+      <input id="referrer" type="text" name="referrer" required autofocus/>
+      <span>// URL: https://checkoutshopper-live.adyen.com/checkoutshopper/securedfields/live_(...)</span>
+      <br><label for="key">Enter key</label>
+      <input id="key" type="text" name="key" required pattern="10001\|.*" />
+      <span>// Key: 10001|......</span>
+      <br><label for="card">Enter card</label>
+      <input id="card" type="text" name="card" required pattern="\b\d{16}\b"/>
+      <span>// Card: 4111111111111111</span>
+      <br><label for="month">Enter month</label>
+      <input id="month" type="text" name="month" required pattern="(0[1-9]|1[0-2])"/>
+      <span>// Month: 01</span>
+      <br><label for="year">Enter year</label>
+      <input id="year" type="text" name="year" required pattern="\b(20[2-9]\d|210[0-9]|211[0-5])\b"/>
+      <span>// Year: 2024</span>
+      <br><label for="cvc">Enter sercurity code</label>
+      <input id="cvc" type="text" name="cvc" required pattern="\b\d{3}\b"/>
+      <span>// CVV: 737</span>
+      <br><input type="submit" value="Encrypt" onclick="play()" />
+      <audio id="audio" src="/sfx/click.mp3"></audio>
+      <span id="hold_text"></span>
+      <script>
+        window.onload = function() {
+          document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+      
+            document.getElementById("hold_text").innerHTML = "Almost done ...";
+      
+            setTimeout(() => {
+              this.submit();
+            }, 3000);
+          });
+        }
+        function play() {
+        var audio = document.getElementById("audio");
+        audio.play();
+      }
+
+
+      </script>
+    </form>
+  </body>
+</html>
